@@ -1,12 +1,17 @@
 package Interfaces;
 
+import Model.NodeQueue;
+
 public interface IQueue<T> {
 	
-	public void insert(T objet ) ;
-	public T firts();
-	public T lastElement ();
-	public T outElement();
-	public T getNext();
+	public void insert(NodeQueue <T> objet ) ;
+	public NodeQueue <T> firts();
+	public NodeQueue <T> lastElement ();
+	public NodeQueue <T> outElement();
+
 	public int getSize();
-	public T setNext(T element);
+	
+	public boolean isEmpty();
+	
+	public String toString();
 }

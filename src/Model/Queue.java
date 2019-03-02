@@ -6,84 +6,88 @@ import Interfaces.IQueue;
 
 public class Queue <T> implements IQueue <T> {
 	
-	private T firts;
-	private T lastElement;
+	private NodeQueue <T> first;
+	private NodeQueue <T>  lastElement;
+	private int ElementsNumber ;
 	
 	
 	
 	public Queue () {
 		
-		firts = null;
+		first = null;
 		lastElement = null;
-		
+		ElementsNumber = 0;
 	}
 
 
 	@Override
-	public void insert(T object) {
+	public void insert(NodeQueue <T> object) {
 
-	   if (this.getSize() == 0) {
-			
-		    firts = object;
-			lastElement = object;
+		if (this.getSize() == 0) {
 
-		} else if (this.getSize()!= 0) {
-            
-			  if(this.getNext()==null) {
-				  lastElement=object;
-			    }
-		}else { 
-			while(this.getNext()!=null) {
-				this.getNext();
-			}
-			lastElement = object;
+			first = (NodeQueue<T>) object;
+			lastElement = (NodeQueue<T>) object;
+
+		} else {
+			lastElement = lastElement.setNext(object);
+
 		}
-
+		ElementsNumber++;
 	}
 
+	
 	@Override
-	public T firts() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public T lastElement() {
-		// TODO Auto-generated method stub
-		return null;
+	public NodeQueue <T> firts() {
+		return first ;
 	}
 
 
 	@Override
-	public T outElement() {
-		// TODO Auto-generated method stub
-		return null;
+	public NodeQueue <T> lastElement() {
+		return lastElement;
 	}
 
 
 	@Override
-	public T getNext() {
+	public NodeQueue <T> outElement() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 	@Override
 	public int getSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ElementsNumber;
 	}
+
+
 
 
 	@Override
-	public T setNext(T element) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean isEmpty() {
+	 boolean answ;
+		if(first!=null) {
+			answ = false;
+		}else {
+			answ = true;
+		}
+		return answ ;
 	}
 
-	
-	
+
+  @Override
+  public String toString() {
+	 String answ = "";
+	for (NodeQueue <T> elementoQueue = first; first !=null ; first.getNext() ) {
+		
+		answ += first.getElement().toString() + "->";
+	}
+	return answ;
+	  
+  }
+
+
 	
 	
 
