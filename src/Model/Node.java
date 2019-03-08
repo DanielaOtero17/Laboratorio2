@@ -1,19 +1,19 @@
 package Model;
 
-import Interfaces.INodeQueue;
+import Interfaces.INode;
 
-public class NodeQueue <T> implements INodeQueue <T> {
+public class Node <T> implements INode <T> {
 	
-	private NodeQueue<T> next;
+	private Node<T> next;
 	private T element;
 	
-	public NodeQueue() {
+	public Node(T elem) {
 		next = null;
-		element = null;
+		element = elem;
 	}
 
 	@Override
-	public NodeQueue<T> getNext() {
+	public Node<T> getNext() {
 		return next;
 	}
 
@@ -23,15 +23,15 @@ public class NodeQueue <T> implements INodeQueue <T> {
 	}
 
 	@Override
-	public NodeQueue<T> setNext (NodeQueue<T> object) {
+	public Node<T> setNext (Node<T> object) {
 		next = object;
 		return object;
 		
 	}
 
 	@Override
-	public NodeQueue<T> firstDisconected() {
-		NodeQueue<T> auxNode = next;
+	public Node<T> firstDisconected() {
+		Node<T> auxNode = next;
 		next = null;
 		return auxNode;
 	}

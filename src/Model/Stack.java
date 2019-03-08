@@ -1,46 +1,66 @@
 package Model;
 
 import java.util.*;
-
 import Interfaces.IStack;
 
 public class Stack<T> implements IStack<T>{
 
-	private int size;
-	private T pop;
-	private T next;
-	private ArrayList<T> array;
+	  private Node<T> end;
+	  private int size;
 	
 	public Stack() {
 		
-		size = 0;
-		pop = null;
-		array = new ArrayList<>();
+		end = null;
+	    size = 0;
 		
 	}
 	
 	@Override
 	public void push(T elem) {
 			
-			pop = elem;
-			array.add(pop);
-			size++;	
+		Node<T> new_node = new Node<T>(elem);
+	    if (end == null){
+	      end = new_node;
+	    size=1;}
+	    else {
+	      new_node.setNext(end);
+	      end = new_node;
+	    }
+	    
+	    size++;
 		}
 
 
 	@Override
 	public T pop() {
 		
-		T deleted = array.remove(array.size()-1);
-		pop = array.get(array.size()-1);
-		size--;
-		
-		return deleted;
+		if (end == null)
+		      return null;		    
+		   
+		    T o = end.getElement();
+		    end = end.getNext();
+		    size--;
+		    return o;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
-}
+
+	@Override
+	public boolean isEmpty() {
+	    return (size == 0);
+	}
+	
+	@Override
+	public T peek() {
+		
+		if (end == null)
+		      return null;
+		    else
+		      return end.getElement();
+		  }
+		
+	}
+

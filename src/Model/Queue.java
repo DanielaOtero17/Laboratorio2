@@ -6,8 +6,8 @@ import Interfaces.IQueue;
 
 public class Queue <T> implements IQueue <T> {
 	
-	private NodeQueue <T> first;
-	private NodeQueue <T>  lastElement;
+	private Node <T> first;
+	private Node <T>  lastElement;
 	private int ElementsNumber ;
 	
 	
@@ -21,12 +21,12 @@ public class Queue <T> implements IQueue <T> {
 
 
 	@Override
-	public void insert(NodeQueue <T> object) {
+	public void insert(Node <T> object) {
 
 		if (this.getSize() == 0) {
 
-			first = (NodeQueue<T>) object;
-			lastElement = (NodeQueue<T>) object;
+			first = (Node<T>) object;
+			lastElement = (Node<T>) object;
 
 		} else {
 			lastElement = lastElement.setNext(object);
@@ -37,19 +37,19 @@ public class Queue <T> implements IQueue <T> {
 
 	
 	@Override
-	public NodeQueue <T> firts() {
+	public Node <T> firts() {
 		return first ;
 	}
 
 
 	@Override
-	public NodeQueue <T> lastElement() {
+	public Node <T> lastElement() {
 		return lastElement;
 	}
 
 
 	@Override
-	public NodeQueue <T> outElement() {
+	public Node <T> outElement() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -79,7 +79,7 @@ public class Queue <T> implements IQueue <T> {
   @Override
   public String toString() {
 	 String answ = "";
-	for (NodeQueue <T> elementoQueue = first; first !=null ; first.getNext() ) {
+	for (Node <T> elementoQueue = first; first !=null ; first.getNext() ) {
 		
 		answ += first.getElement().toString() + "->";
 	}
