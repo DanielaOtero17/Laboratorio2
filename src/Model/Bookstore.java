@@ -16,7 +16,7 @@ public class Bookstore<T> {
 	
 	public void createEmployee(employee e){
 		
-		employees.insert(e);
+		employees.enqueue(e);
 		
 	}
 	public String search(){
@@ -24,9 +24,10 @@ public class Bookstore<T> {
 		return null;
 		}
 	
-	public void createNewBook(T key,T value, int quantity) {
+	public void createNewBook(String key,int value, String shelves) {
 		
-		Book new_book = new Book(key,value,quantity);
+		Book new_book = new Book(key,value,shelves);
+		
 	}
 	
 	public void addBook(Book book) {

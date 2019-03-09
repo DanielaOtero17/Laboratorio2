@@ -1,35 +1,34 @@
 package Model;
 
-public class Book<T> {
+public class Book {
 	
-	private T code;
-	private T name;
+	private String code;
+	private String name;
 	private int quantity;
 	
-	public Book(T key, T value,int quantity) {
+	public Book(String key, int quantity, String shelves) {
 		
 		code = key;
-		name = value;
+		name = shelves;
 		this.quantity = quantity;
 	}
-
-	public T getCode() {
+	
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(T code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 
-	public T getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(T name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -43,5 +42,4 @@ public class Book<T> {
 		return(quantity==0);
 		
 	}
-
 }
