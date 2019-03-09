@@ -1,87 +1,74 @@
 package Model;
 
 import java.util.LinkedList;
-
 import Interfaces.IQueue;
 
 public class Queue <T> implements IQueue <T> {
 	
-	private Node <T> first;
-	private Node <T>  lastElement;
-	private int ElementsNumber ;
-	
-	
-	
-	public Queue () {
-		
-		first = null;
-		lastElement = null;
-		ElementsNumber = 0;
-	}
+	Node<T> first;
+	  Node<T> end;
+	  int size;
 
+	  public Queue() {
+	    end = null;
+	    size = 0;
+	  }
+	  
+	  @Override
+	public T End(){
+		  if(end == null)
+			  return null;
+		  return end.getElement();
+	  }
 
-	@Override
-	public void insert(Node <T> object) {
+	  @Override
+	  public void enqueue(T o) {
+		  
+	    Node<T> new_node = new Node<T>(o);
+	    if (first == null) {
+	      first = new_node;
+	      end = new_node;
+	    } else {
+	      end.setNext(new_node);
+	      end = new_node;
+	    }
+	    size++;
+	  }; // inserts an object onto the queue
 
-		if (this.getSize() == 0) {
+	  @Override
+	  public T Dequeue() {
+	    if (first == null)
+	      return null;
+	    T o = first.getElement();
+	    first = first.getNext();
+	    size--;
+	    return o;
+	  } // gets the object from the queue
 
-			first = (Node<T>) object;
-			lastElement = (Node<T>) object;
+	  @Override
+	  public boolean isEmpty() {
+	    return (size == 0);
+	  }
 
-		} else {
-			lastElement = lastElement.setNext(object);
-
-		}
-		ElementsNumber++;
-	}
-
-	
-	@Override
-	public Node <T> firts() {
-		return first ;
-	}
-
-
-	@Override
-	public Node <T> lastElement() {
-		return lastElement;
-	}
-
-
-	@Override
-	public Node <T> outElement() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public int getSize() {
-		return ElementsNumber;
-	}
-
-
-
-
-	@Override
-	public boolean isEmpty() {
-	 boolean answ;
-		if(first!=null) {
-			answ = false;
-		}else {
-			answ = true;
-		}
-		return answ ;
-	}
-
+	  @Override
+	  public int size(){
+	    return size;
+	  }
+	  
+	  @Override
+	  public T first() {
+	    if (first == null)
+	      return null;
+	    else
+	      return first.getElement();
+	  }
 
   @Override
   public String toString() {
 	 String answ = "";
 	for (Node <T> elementoQueue = first; first !=null ; first.getNext() ) {
 		
-		answ += first.getElement().toString() + "->";
+		answ += elementoQueue.toString() + "->";
 	}
 	return answ;
 	  

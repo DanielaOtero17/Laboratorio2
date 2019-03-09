@@ -4,14 +4,11 @@ import Model.Node;
 
 public interface IQueue<T> {
 	
-	public void insert(Node <T> objet ) ;
-	public Node <T> firts();
-	public Node <T> lastElement ();
-	public Node <T> outElement();
-
-	public int getSize();
-	
+	public void enqueue(T objet ) ;
+	public T first();
+	public T End();
+	public T Dequeue();
+	public int size();
 	public boolean isEmpty();
-	
 	public String toString();
 }
