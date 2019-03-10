@@ -3,7 +3,7 @@ package Model;
 public class ATM {
 
 	public boolean isBusy;
-	ATM(){
+	public  ATM(){
 		
 		isBusy = false;
 		
