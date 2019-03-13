@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Bookstore {
 	
 	private ArrayList<Book> list;
-	private Queue<employee> payList;
+	private Queue<Customer> payList;
 	private ArrayList<ATM> atms;
 	private ArrayList<Shelving<String,Integer>> shelves;
-	private ArrayList<employee> employees;
+	private ArrayList<Customer> employees;
 	
 	public Bookstore() {
 		
@@ -25,30 +25,42 @@ public class Bookstore {
 	public void setShelves(ArrayList<Shelving<String,Integer>> shelves) {
 		this.shelves = shelves;
 	}
+	
+	public void addClientPay(Customer c){
+		payList.enqueue(c);
+	}
+	
+	public String deleteClient(){
+		
+		Customer custom = payList.Dequeue();
+		String deleted = custom.getId() +  " " + custom.getPay() + "\n";
+		deleted += custom.payBooks();
+				return deleted;
+	}
 
 	public void addATM(ATM adding){
 		
 		atms.add(adding);
 	}
-	public void createEmployee(employee e){
+	public void createEmployee(Customer e){
 		
 		employees.add(e);
 		
 	}
 		
-	public Queue<employee> getPayList() {
+	public Queue<Customer> getPayList() {
 		return payList;
 	}
 
-	public void setPayList(Queue<employee> payList) {
+	public void setPayList(Queue<Customer> payList) {
 		this.payList = payList;
 	}
 
-	public ArrayList<employee> getEmployees() {
+	public ArrayList<Customer> getEmployees() {
 		return employees;
 	}
 
-	public void setEmployees(ArrayList<employee> employees) {
+	public void setEmployees(ArrayList<Customer> employees) {
 		this.employees = employees;
 	}
 
@@ -106,9 +118,58 @@ public class Bookstore {
 		return false;
 	}
 	
+	//permite saber si aún hay ejemplares de un libro en la biblioteca.
+	public boolean existBook(int code){
+		
+		for(int i=0; i<list.size();i++){
+			
+			if(list.get(i).getCode() == code && list.get(i).getQuantity()>0){
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public void restQuantity(Book b){
+		
+		b.setQuantity(b.getQuantity()-1);
+		
+	}
+	
+	//permite obtener un libro a partir de su código.
+	public Book obtain(int code){
+		
+		for(int i=0; i<list.size();i++){
+			
+			if(list.get(i).getCode() == code){
+				
+				restQuantity(list.get(i));
+				return list.get(i);
+			}
+		}
+		return null;
+		
+	}
+	
 	public void addBook(Book book) {
 		
 		list.add(book);
+		
+		boolean added = false;
+		int i=0;
+		while(i<shelves.size() && !added ){
+			
+			if(shelves.get(i).getKey().equalsIgnoreCase(book.getName())){
+				
+				shelves.get(i).addBook(book.getCode(), book.getQuantity(), book.getPrice());
+				added = true;
+			}
+			
+			i++;
+		}
+		
 	}
 
 	public ArrayList<Book> getList() {

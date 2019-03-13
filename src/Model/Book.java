@@ -2,9 +2,8 @@ package Model;
 
 public class Book {
 	
-	private String name;
-	private int code, quantity,price;
-	private Book next,back;
+	private String name; // nombre de la estantería en la que se ubican
+	private int code, quantity,price; // codigo identificador, cantidad de ejemplares, precio del libro
 	
 	public Book(int key, int quantity, String shelves,int price) {
 		
@@ -12,29 +11,8 @@ public class Book {
 		name = shelves;
 		this.price = price;
 		this.quantity = quantity;
-		next = null;
-		back = null;
 	}
 	
-	
-	public Book getNext() {
-		return next;
-	}
-
-	public void setNext(Book next) {
-		this.next = next;
-	}
-
-	public Book getBack() {
-		return back;
-	}
-
-
-	public void setBack(Book back) {
-		this.back = back;
-	}
-
-
 	public int getCode() {
 		return code;
 	}

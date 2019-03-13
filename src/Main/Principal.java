@@ -3,9 +3,10 @@ package Main;
 import java.io.*;
 
 import Model.ATM;
+import Model.Book;
 import Model.Bookstore;
 import Model.Shelving;
-import Model.employee;
+import Model.Customer;
 
 public class Principal {
 
@@ -15,15 +16,14 @@ public class Principal {
 		
 	}
 	
-	public static void main(String [] args) throws NumberFormatException, IOException {
+	
+	public void readBuffer(File f) throws NumberFormatException, IOException{
 		
-		Principal main = new Principal();
-		
-		File f = new File("data/Input.txt");
+		f = new File("data/Input.txt");
 		FileReader fr = new FileReader(f);
 		BufferedReader br = new BufferedReader(fr);
 		
-		int totalCases = Integer.parseInt(br.readLine());
+		int totalCases = Integer.parseInt(br.readLine());// numero de casos totales
 		System.out.println(totalCases);
 		
 		for(int a = 0; a<totalCases; a++){
@@ -34,7 +34,7 @@ public class Principal {
 		
 		for(int o=0; o<totalATM;o++){
 						
-			store.addATM(new ATM());
+			store.addATM(new ATM());// agrega la cantidad de cajeros a la tienda.
 		}
 				
 		System.out.println(totalATM);
@@ -59,7 +59,8 @@ public class Principal {
 				int  isbn = Integer.parseInt(aux[0]);
 				int price = Integer.parseInt(aux[1]);
 				int quantity = Integer.parseInt(aux[2]);
-				shelve.addBook(isbn, quantity, price); //agrega una cantidad de libros en una estantería.
+				Book new_book = new Book(isbn,quantity,id,price);
+				store.addBook(new_book);
 				System.out.println(isbn + " "+ price + " " + quantity); // imprime datos de un libro
 			}			
 			store.addShelves(shelve);//agrega la estantería en la biblioteca.
@@ -68,17 +69,18 @@ public class Principal {
 		int c = Integer.parseInt(br.readLine());
 
 		System.out.println(c);
-		
-		
+	
 		for(int i=0; i<c; i++){
-			
-			employee client = new employee(); // crea un nuevo cliente
-			store.createEmployee(client);// agrega el cliente a la tienda de libros.
 			
 			String st = "";
 			String[] totallist = br.readLine().split(" ");
+			String id = totallist[0];
 			
-			for(int j=0; j<totallist.length; j++){
+			Customer customer = new Customer(id); // crea un nuevo cliente
+			store.createEmployee(customer);// agrega el cliente a la tienda de libros.
+			
+			
+			for(int j=1; j<totallist.length; j++){
 				
 				
 				st+= totallist[j] + " ";
@@ -90,4 +92,11 @@ public class Principal {
 	}
 	
 }
+	
+	public static void main(String [] args) throws NumberFormatException, IOException {
+		
+		Principal main = new Principal();
+		main.readBuffer(new File("data/Input.txt"));
+		
+	}
 }
