@@ -2,29 +2,30 @@ package Model;
 
 public class ATM {
 
-	public boolean isBusy;
-	public Stack<Book> toBuy;
+	private boolean isBusy;
+	private Stack<Customer> toBuy;
 	
 	public  ATM(){
 		
 		isBusy = false;
+		toBuy = new Stack();
 		
 	}
 	
-	public void addBooks(Book b){
-		
-		toBuy.push(b);
+	// Realiza el proceso de pago de los clientes en el cajero.
+	public String addBooksPay(Customer c){			
+			toBuy.push(c);
+			String list = c.payBooks();
+			isBusy=true;
+			return list;
 	}
 	
 	public void clean(){
 		
-		for(int i=0; i<toBuy.size();i++){
-			
-			toBuy.pop();
-		}
+			toBuy.pop();		
 	}
 	
-	public boolean getBusy(){
+	public boolean isBusy(){
 		return isBusy;
 	}
 	
@@ -32,6 +33,7 @@ public class ATM {
 		
 		isBusy = b;
 	}
+	
 	
 	
 	

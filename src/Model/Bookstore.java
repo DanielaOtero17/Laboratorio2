@@ -52,10 +52,32 @@ public class Bookstore {
 		
 		Arrays.sort(aux);
 		
-		//TERMINAR MÉTODO
-		
+		for(int i=0; i<aux.length;i++){
+			
+			payList.enqueue(aux[i]);
+		}		
 	}
 
+	public String processPaying(){
+		
+		String paying = "";
+		
+		while(payList.size>0){
+		for(int i=0;i<atms.size();i++){
+			
+			if(!atms.get(i).isBusy()){
+				
+				atms.get(i).addBooksPay(payList.Dequeue());				
+			}
+			
+			//completar método de pago.
+		}
+		
+		}
+		
+		return paying;
+		
+	}
 	public void addATM(ATM adding){
 		
 		atms.add(adding);
