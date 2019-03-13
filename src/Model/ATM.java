@@ -20,6 +20,11 @@ public class ATM {
 			return list;
 	}
 	
+	public void Sleep(Customer c) {
+		
+		
+	}
+	
 	public void clean(){
 		
 			toBuy.pop();		

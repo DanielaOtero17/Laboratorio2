@@ -17,9 +17,9 @@ public class Principal {
 	}
 	
 	
-	public void readBuffer(File f) throws NumberFormatException, IOException{
+	public void readBuffer() throws NumberFormatException, IOException{
 		
-		f = new File("data/Input.txt");
+		File f = new File("data/Input.txt");
 		FileReader fr = new FileReader(f);
 		BufferedReader br = new BufferedReader(fr);
 		
@@ -48,7 +48,7 @@ public class Principal {
 			String[] auxi = br.readLine().split(" ");
 			String id = auxi[0];
 			int totalBooks = Integer.parseInt(auxi[1]);
-			Shelving<String,Integer> shelve = new Shelving<String,Integer>(id,totalBooks);//crea una estantería
+			Shelving<String,Integer> shelve = new Shelving<String,Integer>(id,totalBooks);//crea una estanterï¿½a
 			
 			System.out.println(id + " "+ totalBooks); //imprime la estanteria y la cantidad total de libros
 			
@@ -63,7 +63,7 @@ public class Principal {
 				store.addBook(new_book);
 				System.out.println(isbn + " "+ price + " " + quantity); // imprime datos de un libro
 			}			
-			store.addShelves(shelve);//agrega la estantería en la biblioteca.
+			store.addShelves(shelve);//agrega la estanteria  en la biblioteca.
 		}
 		
 		int c = Integer.parseInt(br.readLine());
@@ -73,7 +73,7 @@ public class Principal {
 		for(int i=0; i<c; i++){
 			
 			String st = "";
-			String[] totallist = br.readLine().split(" ");
+			String[] totallist = br.readLine().split(" "); // lista que contiene la id del cliente y los libros que el cliente compra.
 			String id = totallist[0];
 			
 			Customer customer = new Customer(id); // crea un nuevo cliente
@@ -82,7 +82,8 @@ public class Principal {
 			
 			for(int j=1; j<totallist.length; j++){
 				
-				
+				int aux = Integer.parseInt(totallist[j]);
+				customer.buyBook(aux);
 				st+= totallist[j] + " ";
 			}
 			System.out.println(st);
@@ -96,7 +97,7 @@ public class Principal {
 	public static void main(String [] args) throws NumberFormatException, IOException {
 		
 		Principal main = new Principal();
-		main.readBuffer(new File("data/Input.txt"));
+		main.readBuffer();
 		
 	}
 }

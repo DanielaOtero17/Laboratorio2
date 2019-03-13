@@ -70,7 +70,8 @@ public class Bookstore {
 				atms.get(i).addBooksPay(payList.Dequeue());				
 			}
 			
-			//completar método de pago.
+			
+			//completar mï¿½todo de pago.
 			
 		}
 		
@@ -160,7 +161,7 @@ public class Bookstore {
 		return false;
 	}
 	
-	//permite saber si aún hay ejemplares de un libro en la biblioteca.
+	//permite saber si aï¿½n hay ejemplares de un libro en la biblioteca.
 	public boolean existBook(int code){
 		
 		for(int i=0; i<list.size();i++){
@@ -180,7 +181,7 @@ public class Bookstore {
 		
 	}
 	
-	//permite obtener un libro a partir de su código.
+	//permite obtener un libro a partir de su cï¿½digo.
 	public Book obtain(int code){
 		
 		for(int i=0; i<list.size();i++){

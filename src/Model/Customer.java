@@ -67,16 +67,8 @@ public class Customer implements Comparable<Customer> {
 	public void setTime(int time) {
 		this.time = time;
 	}
-
-
-	public void addBook(Book b){
-		
-	list.push(b);
-	time ++;	
-	}
 	
-	
-	//Retorna los códigos de los libros en el orden que han sido pagados.
+	//Retorna los cï¿½digos de los libros en el orden que han sido pagados.
 	public String payBooks(){
 		
 	String bougths = "";
@@ -109,7 +101,7 @@ public class Customer implements Comparable<Customer> {
 
 	@Override
 	public int compareTo(Customer o) {
-		if(time < o.time) // Si el tiempo del actual es menor al tiempo del parámetro
+		if(time < o.time) // Si el tiempo del actual es menor al tiempo del parï¿½metro
 			return 1; // retorno 1.
 		else if(time > o.time) // si es mayor
 			return -1;// retorno -1;
