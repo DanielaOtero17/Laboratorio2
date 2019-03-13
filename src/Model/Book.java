@@ -2,22 +2,52 @@ package Model;
 
 public class Book {
 	
-	private String code;
 	private String name;
-	private int quantity;
+	private int code, quantity,price;
+	private Book next,back;
 	
-	public Book(String key, int quantity, String shelves) {
+	public Book(int key, int quantity, String shelves,int price) {
 		
 		code = key;
 		name = shelves;
+		this.price = price;
 		this.quantity = quantity;
+		next = null;
+		back = null;
 	}
 	
-	public String getCode() {
+	
+	public Book getNext() {
+		return next;
+	}
+
+	public void setNext(Book next) {
+		this.next = next;
+	}
+
+	public Book getBack() {
+		return back;
+	}
+
+
+	public void setBack(Book back) {
+		this.back = back;
+	}
+
+
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public void setCode(int code) {
 		this.code = code;
 	}
 
