@@ -1,6 +1,6 @@
 package Model;
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
 	
 	private Stack<Book> list;
 	private String id;
@@ -72,7 +72,7 @@ public class Customer {
 	public void addBook(Book b){
 		
 	list.push(b);
-	
+	time ++;	
 	}
 	
 	
@@ -100,12 +100,20 @@ public class Customer {
 		}else{
 			System.out.println("El libro se encuentra agotado.");
 		}
-
 	}
 
 	public int getTotalBooks(){
 		
 		return list.size();
+	}
+
+	@Override
+	public int compareTo(Customer o) {
+		if(time < o.time) // Si el tiempo del actual es menor al tiempo del parámetro
+			return 1; // retorno 1.
+		else if(time > o.time) // si es mayor
+			return -1;// retorno -1;
+		return 0; // si son iguales, retorno 0;
 	}
 	
 	

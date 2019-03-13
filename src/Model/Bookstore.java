@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Bookstore {
 	
@@ -9,6 +10,7 @@ public class Bookstore {
 	private ArrayList<ATM> atms;
 	private ArrayList<Shelving<String,Integer>> shelves;
 	private ArrayList<Customer> employees;
+	private int time;
 	
 	public Bookstore() {
 		
@@ -17,6 +19,7 @@ public class Bookstore {
 		payList = new Queue<>();
 		atms = new ArrayList<>();
 		shelves = new ArrayList<>();
+		time = 0;
 	}
 		
 	public ArrayList<Shelving<String,Integer>> getShelves() {
@@ -37,6 +40,21 @@ public class Bookstore {
 		deleted += custom.payBooks();
 				return deleted;
 	}
+	
+	public void organizeListPay(){
+		
+		Customer[] aux = new Customer[employees.size()];
+		
+		for(int i=0;i<employees.size();i++){
+			
+			aux[i]=employees.get(i);
+		}
+		
+		Arrays.sort(aux);
+		
+		//TERMINAR MÉTODO
+		
+	}
 
 	public void addATM(ATM adding){
 		
@@ -44,9 +62,10 @@ public class Bookstore {
 	}
 	public void createEmployee(Customer e){
 		
+		e.setTime(employees.size()+1);//incrementa el tiempo del cliente.
 		employees.add(e);
 		
-	}
+		}
 		
 	public Queue<Customer> getPayList() {
 		return payList;
