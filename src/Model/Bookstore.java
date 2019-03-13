@@ -71,6 +71,7 @@ public class Bookstore {
 			}
 			
 			//completar método de pago.
+			
 		}
 		
 		}
