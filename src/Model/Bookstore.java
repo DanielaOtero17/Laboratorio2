@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,7 +19,7 @@ public class Bookstore {
 		employees = new ArrayList<>();
 		payList = new Queue<>();
 		atms = new ArrayList<>();
-		shelves = new ArrayList<>();
+		shelves = new ArrayList<Shelving<String,Integer>>();
 		time = 0;
 	}
 		
@@ -120,23 +121,34 @@ public class Bookstore {
 		return null;
 		}
 	
-	public void addShelves(Shelving shelve){
+	public void addShelves(Shelving<String, Integer> shelve){
 		
-		shelves.add(shelve);
-		
-		
+		shelves.add(shelve);		
 	}
 	
-	public void createNewBook(int code,int examples, String shelve,int price) {
+	public int getTotalBooks(){
+		
+		int sum = 0;
+		for(int i=0;i<list.size();i++){
+			 
+			sum += list.get(i).getQuantity();
+		}
+		return sum;
+	}	
+	public void createNewBook(int code,int examples, String shelve,int price) throws IOException {
 		
 		Book new_book = new Book(code,examples,shelve,price);
-		
-		shelves.get(positionShelve(shelve)).addBook(code, examples,price);
-			
-		
+		list.add(new_book);
+	shelves.get(positionShelve(shelve)).addBook(new_book.getCode(), new_book.getQuantity(),new_book.getPrice());		
 	}
 	
-	public int positionShelve(String name){
+	public int getTamanioListBooks(){
+		
+		System.out.println("El tamanio de la lista es " + list.size());
+		return list.size();
+	}
+	
+	public int positionShelve(String name) throws IOException{
 		
 		int i= 0;
 		while(i<shelves.size()){
@@ -146,8 +158,8 @@ public class Bookstore {
 			}
 			i++;
 		}
-		Integer integer = (Integer) null;
-		return integer;
+		return 0;
+		
 	}
 	public boolean existShelve(String name){
 		int i= 0;
@@ -161,17 +173,14 @@ public class Bookstore {
 		return false;
 	}
 	
-	//permite saber si a�n hay ejemplares de un libro en la biblioteca.
-	public boolean existBook(int code){
+	public boolean existBook(int cod){
 		
-		for(int i=0; i<list.size();i++){
+		
+		for(int a = 0; a < list.size(); a++){
 			
-			if(list.get(i).getCode() == code && list.get(i).getQuantity()>0){
-				
+			if(list.get(a).getCode() == cod && list.get(a).getQuantity() > 0)
 				return true;
-			}
 		}
-		
 		return false;
 	}
 	
@@ -181,7 +190,7 @@ public class Bookstore {
 		
 	}
 	
-	//permite obtener un libro a partir de su c�digo.
+	//permite obtener un libro a partir de su codigo.
 	public Book obtain(int code){
 		
 		for(int i=0; i<list.size();i++){
@@ -193,25 +202,6 @@ public class Bookstore {
 			}
 		}
 		return null;
-		
-	}
-	
-	public void addBook(Book book) {
-		
-		list.add(book);
-		
-		boolean added = false;
-		int i=0;
-		while(i<shelves.size() && !added ){
-			
-			if(shelves.get(i).getKey().equalsIgnoreCase(book.getName())){
-				
-				shelves.get(i).addBook(book.getCode(), book.getQuantity(), book.getPrice());
-				added = true;
-			}
-			
-			i++;
-		}
 		
 	}
 

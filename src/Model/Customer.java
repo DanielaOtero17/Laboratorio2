@@ -8,13 +8,13 @@ public class Customer implements Comparable<Customer> {
 	private int time;
 	private Bookstore store;
 	
-	public Customer(String id) {
+	public Customer(String id, Bookstore bookStore) {
 		
 		list = new Stack<>();
 		this.id = id;
 		pay = 0;
 		time = 0;
-		store = new Bookstore();
+		store = bookStore;
 		
 	}
 	
@@ -90,7 +90,7 @@ public class Customer implements Comparable<Customer> {
 			list.push(store.obtain(code));
 			time ++;
 		}else{
-			System.out.println("El libro se encuentra agotado.");
+			System.out.println("El libro " + code + " se encuentra agotado.");
 		}
 	}
 
