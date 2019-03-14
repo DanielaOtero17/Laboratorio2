@@ -4,11 +4,13 @@ public class ATM {
 
 	private boolean isBusy;
 	private Stack<Customer> toBuy;
+	private int time;
 	
 	public  ATM(){
 		
 		isBusy = false;
 		toBuy = new Stack();
+		time = 0;
 		
 	}
 	
@@ -16,18 +18,31 @@ public class ATM {
 	public String addBooksPay(Customer c){			
 			toBuy.push(c);
 			String list = c.payBooks();
+			time = c.getTotalBooks();
 			isBusy=true;
 			return list;
 	}
 	
-	public void Sleep(Customer c) {
+	public int getTime(){
 		
-		
+		return time;
+	}
+	
+	public void waitMinutes(){
+		try{
+			
+			Thread.sleep(time);
+			clean();
+			
+		}catch(Exception e){
+			
+		}
 	}
 	
 	public void clean(){
 		
-			toBuy.pop();		
+			toBuy.pop();	
+			isBusy = false;
 	}
 	
 	public boolean isBusy(){

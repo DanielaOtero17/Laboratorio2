@@ -33,15 +33,7 @@ public class Bookstore {
 	public void addClientPay(Customer c){
 		payList.enqueue(c);
 	}
-	
-	public String deleteClient(){
-		
-		Customer custom = payList.Dequeue();
-		String deleted = custom.getId() +  " " + custom.getPay() + "\n";
-		deleted += custom.payBooks();
-				return deleted;
-	}
-	
+
 	public void organizeListPay(){
 		
 		Customer[] aux = new Customer[employees.size()];
@@ -68,19 +60,15 @@ public class Bookstore {
 			
 			if(!atms.get(i).isBusy()){
 				
-				atms.get(i).addBooksPay(payList.Dequeue());				
-			}
-			
-			
-			//completar m�todo de pago.
-			
+				Customer client = payList.Dequeue();
+			paying+=	atms.get(i).addBooksPay(client) + " ";	
+				atms.get(i).waitMinutes();
+			}			
 		}
-		
-		}
-		
-		return paying;
-		
+	}	
+		return paying;	
 	}
+	
 	public void addATM(ATM adding){
 		
 		atms.add(adding);

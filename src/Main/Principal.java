@@ -70,8 +70,7 @@ public class Principal {
 			for (int i = 0; i < c; i++) {
 
 				String st = "";
-				String[] totallist = br.readLine().split(" "); // lista que
-																// contiene la
+				String[] totallist = br.readLine().split(" "); // lista que contiene la
 																// id del
 																// cliente y los
 																// libros que el
@@ -89,9 +88,9 @@ public class Principal {
 					st += totallist[j] + " ";
 				}
 			}
-
+			
+			System.out.println(store.processPaying());
 		}
-
 	}
 	
 	public static void main(String [] args) throws NumberFormatException, IOException {
