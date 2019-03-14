@@ -88,8 +88,7 @@ public class Principal {
 					st += totallist[j] + " ";
 				}
 			}
-			
-			System.out.println(store.processPaying());
+			store.processPaying();
 		}
 	}
 	

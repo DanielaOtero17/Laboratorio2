@@ -3,7 +3,7 @@ package Model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import Thread.Linen;
 public class Bookstore {
 	
 	private ArrayList<Book> list;
@@ -53,20 +53,23 @@ public class Bookstore {
 
 	public String processPaying(){
 		
-		String paying = "";
+		String dataClient = "";
 		
-		while(payList.size>0){
-		for(int i=0;i<atms.size();i++){
-			
-			if(!atms.get(i).isBusy()){
-				
-				Customer client = payList.Dequeue();
-			paying+=	atms.get(i).addBooksPay(client) + " ";	
-				atms.get(i).waitMinutes();
-			}			
+		organizeListPay();
+		while (payList.size > 0) {
+
+			for (int i = 0; i < atms.size(); i++) {
+
+				if (!atms.get(i).isBusy()) {
+
+					Customer client = payList.Dequeue();
+					dataClient += atms.get(i).addBooksPay(client) + " ";
+					System.out.println(dataClient);
+				}
+			}
 		}
-	}	
-		return paying;	
+
+		return dataClient;
 	}
 	
 	public void addATM(ATM adding){

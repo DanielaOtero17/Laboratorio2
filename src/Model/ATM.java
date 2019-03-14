@@ -17,7 +17,9 @@ public class ATM {
 	// Realiza el proceso de pago de los clientes en el cajero.
 	public String addBooksPay(Customer c){			
 			toBuy.push(c);
-			String list = c.payBooks();
+			String list = "";
+			list += c.getId() + " " + c.getPay() + "\n";
+			list += c.payBooks() + " ";
 			time = c.getTotalBooks();
 			isBusy=true;
 			return list;

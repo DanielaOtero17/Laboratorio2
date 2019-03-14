@@ -87,7 +87,9 @@ public class Customer implements Comparable<Customer> {
 		
 		if(store.existBook(code)){
 			
-			list.push(store.obtain(code));
+			Book b = store.obtain(code);
+			list.push(b);
+			pay += b.getPrice();
 			time ++;
 		}else{
 			System.out.println("El libro " + code + " se encuentra agotado.");
@@ -102,9 +104,9 @@ public class Customer implements Comparable<Customer> {
 	@Override
 	public int compareTo(Customer o) {
 		if(time < o.time) // Si el tiempo del actual es menor al tiempo del par�metro
-			return 1; // retorno 1.
+			return -1; // retorno 1.
 		else if(time > o.time) // si es mayor
-			return -1;// retorno -1;
+			return 1;// retorno -1;
 		return 0; // si son iguales, retorno 0;
 	}
 	
