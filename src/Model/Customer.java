@@ -67,21 +67,23 @@ public class Customer implements Comparable<Customer> {
 	public void setTime(int time) {
 		this.time = time;
 	}
-	
-	//Retorna los c�digos de los libros en el orden que han sido pagados.
+
 	public String payBooks(){
 		
-	String bougths = "";
-		for(int i =0; i<list.size();i++){
-			
-			Book payed = list.pop();
-			
-			bougths += payed.getCode() + " ";
-			pay += payed.getPrice();
-		}
+		String bougths = "";
 		
-	return bougths;
-	}
+		int i=0;
+		
+		while(i<list.size()){
+				
+				Book payed = list.pop();
+				bougths += payed.getCode() + " ";
+				pay += payed.getPrice();
+				i++;
+			}
+			
+		return bougths;
+		}
 	
 	public void buyBook(int code){
 		

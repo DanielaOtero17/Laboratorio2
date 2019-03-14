@@ -25,6 +25,7 @@ public class Linen extends Thread{
 				
 				ATM aux = store.getAtms().get(i);
 				int time = store.getAtms().get(i).getTime();
+				Thread.sleep(time);
 				
 					
 				}catch(Exception e){

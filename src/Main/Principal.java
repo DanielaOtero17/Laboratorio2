@@ -46,7 +46,7 @@ public class Principal {
 				String id = auxi[0];
 				int totalBooks = Integer.parseInt(auxi[1]);
 				Shelving<String, Integer> shelve = new Shelving<String, Integer>(id, totalBooks);// crea una estanteria
-				System.out.println("existe la estantería " + shelve.getKey());
+				// System.out.println("existe la estantería " + shelve.getKey());
 				store.addShelves(shelve);
 
 				for (int j = 0; j < totalBooks; j++) {
@@ -60,10 +60,10 @@ public class Principal {
 					store.createNewBook(isbn, quantity, id, price);
 				}
 			}
-			System.out.println("Cantidad de estanterias: " + store.getShelves().size());
+		/*	System.out.println("Cantidad de estanterias: " + store.getShelves().size());
 			System.out.println("Cantidad de isbn : " + store.getList().size());
 			System.out.println("Cantidad de libros totales: " + store.getTotalBooks());
-			System.out.println("La Cantidad de cajeros es: "+ store.getAtms().size());
+			System.out.println("La Cantidad de cajeros es: "+ store.getAtms().size());*/
 
 			int c = Integer.parseInt(br.readLine());
 

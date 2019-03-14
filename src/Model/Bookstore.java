@@ -51,25 +51,54 @@ public class Bookstore {
 		}		
 	}
 
-	public String processPaying(){
+	public ArrayList<ATM> auxiliaryProcess(ArrayList<ATM> atms){
 		
-		String dataClient = "";
-		
-		organizeListPay();
-		while (payList.size > 0) {
-
-			for (int i = 0; i < atms.size(); i++) {
-
+		for (int i = 0; i < atms.size(); i++) {
+			
+			if(payList.isEmpty()==false){
+				Customer client = payList.Dequeue();
 				if (!atms.get(i).isBusy()) {
-
-					Customer client = payList.Dequeue();
-					dataClient += atms.get(i).addBooksPay(client) + " ";
-					System.out.println(dataClient);
+					atms.get(i).addBooksPay(client);				
+			
 				}
+				atms.get(i).waitMinutes();
+				
 			}
 		}
+		return atms;
+	}
+	
+	public void waitTime(){
+		
+		for (int a = 0; a < atms.size(); a++) {
 
-		return dataClient;
+			atms.get(a).waitMinutes();
+		}
+	}
+	public String processPaying(){
+		
+		String data = "";
+		String auxi = "";
+		organizeListPay();
+		int j = 0;
+				
+		ATM[] aux = new ATM[atms.size()];
+		for(int i=0; i<employees.size();i++){
+
+			atms = auxiliaryProcess(atms);
+			waitTime();
+
+			for (int a = 0; a < atms.size(); a++) {
+				
+				aux[a] = atms.get(a);
+			}
+				
+	Arrays.sort(aux);
+	System.out.println(aux[0].getLatest().getId());
+		}
+
+		// System.out.println(data);
+		return data;
 	}
 	
 	public void addATM(ATM adding){
