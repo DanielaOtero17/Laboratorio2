@@ -6,6 +6,7 @@ public class ATM implements Comparable<ATM>{
 	private Stack<Customer> toBuy;
 	private int time;
 	private Customer latest;
+	private String data;
 	
 	public  ATM(){
 		
@@ -13,19 +14,20 @@ public class ATM implements Comparable<ATM>{
 		toBuy = new Stack();
 		time = 0;
 		latest = null;
+		data = "";
 	}
 	
 	// Realiza el proceso de pago de los clientes en el cajero.
-	public String addBooksPay(Customer c){			
-			toBuy.push(c);
-			String list = "";
-			time = c.getTotalBooks();
-			list += c.getId() + " " + c.getPay() + "\n";
-			list += c.payBooks() + " ";
-			isBusy=true;
-			latest = c;
-			return list;
+	public void addBooksPay(Customer c){			
 			
+		toBuy.push(c);
+		String list = "";
+			time = c.getTotalBooks();
+			data += c.getId() + " " + c.getPay() + "\n";
+			data += c.payBooks() + " ";
+			isBusy=true;
+			latest = c;	
+			waitMinutes();
 	}
 	
 	public Customer getLatest(){
@@ -37,8 +39,13 @@ public class ATM implements Comparable<ATM>{
 		return time;
 	}
 	
+	public String getData() {
+		return data;
+	}
 	public void waitMinutes(){
+		
 		 time=time-1;
+		 
 		 if(time==0){
 			 clean();
 		 }
@@ -48,6 +55,7 @@ public class ATM implements Comparable<ATM>{
 		
 			toBuy.pop();	
 			isBusy = false;
+			data = "";
 	}
 	
 	public boolean isBusy(){
