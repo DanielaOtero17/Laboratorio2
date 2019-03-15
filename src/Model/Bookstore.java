@@ -10,7 +10,7 @@ public class Bookstore {
 	private ArrayList<ATM> atms;
 	private ArrayList<Shelving<String,Integer>> shelves;
 	private ArrayList<Customer> employees;
-	private int time;
+	private int booksout;
 	
 	public Bookstore() {
 		
@@ -19,7 +19,7 @@ public class Bookstore {
 		payList = new Queue<>();
 		atms = new ArrayList<>();
 		shelves = new ArrayList<Shelving<String,Integer>>();
-		time = 0;
+		booksout = 0;
 	}
 		
 	public ArrayList<Shelving<String,Integer>> getShelves() {
@@ -31,6 +31,14 @@ public class Bookstore {
 	
 	public void addClientPay(Customer c){
 		payList.enqueue(c);
+	}
+	
+	public void setBooksout(int x) {
+		
+		booksout = x;
+	}
+	public int getBooksout() {
+		return booksout;
 	}
 
 	public void organizeListPay(){
@@ -54,29 +62,39 @@ public class Bookstore {
 		
 		String data = "";
 		String auxi = "";
-		int j = 0;
-		
-		for(int i=0; i<employees.size();i++) {
+		boolean exist = false;
+
+		while(booksout > 0) {
 			
-			addCustomerATM();			
-		}
-		
-		
-	
-		// System.out.println(data);
+			addCustomerATM();
+			if(isNotBusy()==null) {
+				
+				for(int a =0; a<atms.size();a++) {
+					atms.get(a).waitMinutes();
+				}
+				booksout = booksout - atms.size();
+				
+				for(int a =0; a<atms.size();a++) {
+					System.out.println(atms.get(a).getData());
+				}
+			}
+			
+		} 
 		return data;
 	}
 	
 	public void addCustomerATM() {
 		
 		organizeListPay();
+		
 		for(int i=0; i< atms.size(); i++) {
 			
+			ATM aux = this.isNotBusy();
+			int a = isTheSame(aux);
 			
 			if(aux!=null) {
 				
-				isNotBusy().addBooksPay(payList.Dequeue());
-				System.out.println(isNotBusy().getData());
+				atms.get(a).addBooksPay(payList.Dequeue());				
 			}
 		}
 	}
@@ -85,8 +103,12 @@ public class Bookstore {
 		
 		for(int i=0; i<atms.size();i++) {
 			
-			
+			if(atms.get(i)==atm) {
+				
+				return i;
+			}
 		}
+		return 0;
 	}
 	
 	public ATM isNotBusy() {

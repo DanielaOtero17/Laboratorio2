@@ -93,6 +93,7 @@ public class Customer implements Comparable<Customer> {
 			list.push(b);
 			pay += b.getPrice();
 			time ++;
+			store.setBooksout(store.getBooksout()+1);
 		}else{
 			System.out.println("El libro " + code + " se encuentra agotado.");
 		}
