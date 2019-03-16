@@ -27,7 +27,7 @@ public class ATM implements Comparable<ATM>{
 			data += c.payBooks() + " ";
 			isBusy=true;
 			latest = c;	
-			waitMinutes();
+			
 	}
 	
 	public Customer getLatest(){
@@ -45,10 +45,6 @@ public class ATM implements Comparable<ATM>{
 	public void waitMinutes(){
 		
 		 time=time-1;
-		 
-		 if(time==0){
-			 clean();
-		 }
 	}
 	
 	public void clean(){

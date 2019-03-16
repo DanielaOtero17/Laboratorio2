@@ -61,44 +61,88 @@ public class Bookstore {
 	public String processPaying(){
 		
 		String data = "";
-		String auxi = "";
-		boolean exist = false;
-
-		while(booksout > 0) {
-			
-			addCustomerATM();
-			if(isNotBusy()==null) {
-				
-				for(int a =0; a<atms.size();a++) {
-					atms.get(a).waitMinutes();
-				}
-				booksout = booksout - atms.size();
-				
-				for(int a =0; a<atms.size();a++) {
-					System.out.println(atms.get(a).getData());
-				}
-			}
-			
-		} 
-		return data;
-	}
-	
-	public void addCustomerATM() {
-		
 		organizeListPay();
+		int size = payList.size();
 		
-		for(int i=0; i< atms.size(); i++) {
+		ArrayList<Customer> aux = new ArrayList<>();
+		ATM[] array = new ATM[atms.size()];
+		boolean[] isAdded = new boolean[payList.size()];
+		int counter = 0;
+		ATM[] auxArray = new ATM[array.length];
+		boolean ok=false;
+		
+		for(int i=0; i<employees.size();i++){
+			booksout += employees.get(i).getTotalBooks();
+		}
+		for(int i=0; i< size;i++){
 			
-			ATM aux = this.isNotBusy();
-			int a = isTheSame(aux);
+			aux.add(payList.Dequeue());
+		}
+		
+		
+		while(payList.size()>0){
 			
-			if(aux!=null) {
+			ATM atm = isNotBusy();
+			int i = isTheSame(atm);
+			
+			if (atm == null) {
 				
-				atms.get(a).addBooksPay(payList.Dequeue());				
+				while(!ok){
+				
+				for(int m=0; m<atms.size();m++){
+					
+					if(atms.get(m).getTime()==0){
+						
+						ok = true;
+					}
+				}
+				}
+
+			} else {
+				atms.get(i).addBooksPay(payList.Dequeue());
+
 			}
 		}
+
+			for(int m=0; m<atms.size();m++){
+				array[m] = atms.get(m);
+			}
+			
+			Arrays.sort(array);
+			
+			System.out.println(payList.size());
+			
+				return data;
 	}
 	
+	public boolean exist(boolean[] bool){
+		
+		for(int i=0; i<bool.length;i++){
+			
+			if(bool[i]==false){
+				
+				return true;
+			}
+		}
+		return false;
+	}
+	
+//	public void addCustomerATM() {
+//		
+//		organizeListPay();
+//		
+//		for(int i=0; i< atms.size(); i++) {
+//			
+//			ATM aux = this.isNotBusy();
+//			int a = isTheSame(aux);
+//			
+//			if(aux!=null) {
+//				
+//				atms.get(a).addBooksPay(payList.Dequeue());				
+//			}
+//		}
+//	}
+//	
 	public int isTheSame(ATM atm) {
 		
 		for(int i=0; i<atms.size();i++) {
