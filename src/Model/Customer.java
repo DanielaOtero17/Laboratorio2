@@ -7,6 +7,7 @@ public class Customer implements Comparable<Customer> {
 	private int pay;
 	private int time;
 	private Bookstore store;
+	private int totalBooks;
 	
 	public Customer(String id, Bookstore bookStore) {
 		
@@ -15,6 +16,7 @@ public class Customer implements Comparable<Customer> {
 		pay = 0;
 		time = 0;
 		store = bookStore;
+		totalBooks = 0;
 		
 	}
 	
@@ -63,6 +65,10 @@ public class Customer implements Comparable<Customer> {
 		return time;
 	}
 
+	public void setTotalBooksAdded(int b){
+		
+		totalBooks = b;
+	}
 
 	public void setTime(int time) {
 		this.time = time;
@@ -71,16 +77,21 @@ public class Customer implements Comparable<Customer> {
 	public String payBooks(){
 		
 		String bougths = "";
+
+		int size = list.size();
 		
-		int i=0;
-		
-		while(i<list.size()){
+		for(int i=0;i<size;i++){
+			
+			Book payed = list.pop();
+			bougths += payed.getCode() + " ";
+			pay += payed.getPrice();
+			i++;
+			
+		}
+		//while(i<list.size()){
 				
-				Book payed = list.pop();
-				bougths += payed.getCode() + " ";
-				pay += payed.getPrice();
-				i++;
-			}
+				
+		//	}
 			
 		return bougths;
 		}
@@ -97,6 +108,11 @@ public class Customer implements Comparable<Customer> {
 		}else{
 			System.out.println("El libro " + code + " se encuentra agotado.");
 		}
+	}
+	
+	public int getTotalBooksAdded(){
+		
+		return totalBooks;
 	}
 
 	public int getTotalBooks(){

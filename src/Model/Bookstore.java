@@ -81,16 +81,16 @@ public class Bookstore {
 		for(int i=0; i<employees.size();i++){
 			booksout += employees.get(i).getTotalBooks();
 		}
-		for(int i=0; i< size;i++){
-			
-			aux.add(payList.Dequeue());
-		}
+//		for(int i=0; i< size;i++){
+//			
+//			aux.add(payList.Dequeue());
+//		}
 		
-		
-		while(payList.size()>0){
+		while(booksout>0){
 			
 			ATM atm = isNotBusy();
 			int i = isTheSame(atm);
+			
 			
 			if (atm == null) {
 				
@@ -101,24 +101,33 @@ public class Bookstore {
 					if(atms.get(m).getTime()==0){
 						
 						ok = true;
+						data += atms.get(m).getData();
+						atms.get(m).clean();
+						
+					}else{
+						
+						atms.get(m).waitMinutes();
+						booksout-=1;
 					}
 				}
 				}
+				
+				ok = false;
 
 			} else {
-				atms.get(i).addBooksPay(payList.Dequeue());
-
+				
+				Customer auxiliary = payList.Dequeue();
+				if(auxiliary!=null)
+				atms.get(i).addBooksPay(auxiliary);
+				else
+				{
+					booksout =0;
+				}
+				
 			}
 		}
 
-			for(int m=0; m<atms.size();m++){
-				array[m] = atms.get(m);
-			}
-			
-			Arrays.sort(array);
-			
-			System.out.println(payList.size());
-			
+		
 				return data;
 	}
 	

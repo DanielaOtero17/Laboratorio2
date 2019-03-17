@@ -24,7 +24,8 @@ public class ATM implements Comparable<ATM>{
 		String list = "";
 			time = c.getTotalBooks();
 			data += c.getId() + " " + c.getPay() + "\n";
-			data += c.payBooks() + " ";
+			data += c.payBooks() +"\n";
+			
 			isBusy=true;
 			latest = c;	
 			

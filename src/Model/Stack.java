@@ -25,9 +25,10 @@ public class Stack<T> implements IStack<T>{
 	    else {
 	      new_node.setNext(end);
 	      end = new_node;
+	      
 	    }
-	    
 	    size++;
+	    
 		}
 
 
@@ -39,6 +40,7 @@ public class Stack<T> implements IStack<T>{
 		   
 		    T o = end.getElement();
 		    end = end.getNext();
+		   
 		    size--;
 		    return o;
 	}

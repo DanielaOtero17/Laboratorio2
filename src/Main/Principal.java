@@ -84,10 +84,11 @@ public class Principal {
 
 					int aux = Integer.parseInt(totallist[j]);
 					customer.buyBook(aux);
+					
 					st += totallist[j] + " ";
 				}
 			}
-			store.processPaying();
+			System.out.println(store.processPaying());
 		}
 	}
 	
