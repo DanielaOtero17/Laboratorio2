@@ -78,7 +78,7 @@ public class Principal {
 				String id = totallist[0];
 
 				Customer customer = new Customer(id,store); // crea un nuevo cliente
-				store.createEmployee(customer);// agrega el cliente a la tienda
+				store.createCustomer(customer);// agrega el cliente a la tienda
 												// de libros.
 				for (int j = 1; j < totallist.length; j++) {
 

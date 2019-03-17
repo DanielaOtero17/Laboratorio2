@@ -172,7 +172,7 @@ public class Bookstore {
 		
 		atms.add(adding);
 	}
-	public void createEmployee(Customer e){
+	public void createCustomer(Customer e){
 		
 		e.setTime(employees.size()+1);//incrementa el tiempo del cliente.
 		employees.add(e);
